@@ -1,3 +1,0 @@
-/home/christopher/versioned/mandelbrot/build/CMakeFiles/rebuild_cache.dir
-/home/christopher/versioned/mandelbrot/build/CMakeFiles/mandelbrot.dir
-/home/christopher/versioned/mandelbrot/build/CMakeFiles/edit_cache.dir

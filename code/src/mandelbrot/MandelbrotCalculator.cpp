@@ -6,16 +6,17 @@
 #include "../../header/mandelbrot/MandelbrotCalculator.h"
 #include "../../header/utils/ConfigUtils.h"
 
-std::vector<MandelbrotResult> MandelbrotCalculator::getMandelbrot(int xMax, int yMax) {
+std::vector<MandelbrotResult>
+MandelbrotCalculator::getMandelbrot(int width, int height, double realStart, double realEnd, double imaginaryStart,
+                                    double imaginaryEnd) {
     std::vector<MandelbrotResult> mandelbrotResults;
-    for (int x = 0; x < xMax; x++) {
-        for (int y = 0; y < yMax; y++) {
-            float real = ConfigUtils::getRealStart() +
-                         ((float) x / xMax) * (ConfigUtils::getRealEnd() - ConfigUtils::getRealStart());
-            float imaginary = ConfigUtils::getImaginaryStart() +
-                              ((float) y / yMax) * (ConfigUtils::getImaginaryEnd() - ConfigUtils::getImaginaryStart());
+    MandelbrotResult mandelbrotResult = MandelbrotResult();
+    for (int x = 0; x < width; x++) {
+        for (int y = 0; y < height; y++) {
+            double real = MathUtils::scaleValue(x, width, realStart, realEnd);
+            double imaginary = MathUtils::scaleValue(y, height, imaginaryStart, imaginaryEnd);
             std::complex<double> constant(real, imaginary);
-            MandelbrotResult mandelbrotResult = MandelbrotResult();
+
             mandelbrotResult.setXCoord(x);
             mandelbrotResult.setYCoord(y);
             mandelbrotResult.setTotalIterations(MandelbrotCalculator::mandelbrotIterations(constant));
@@ -26,7 +27,6 @@ std::vector<MandelbrotResult> MandelbrotCalculator::getMandelbrot(int xMax, int 
 }
 
 int MandelbrotCalculator::mandelbrotIterations(std::complex<double> constant) {
-
     std::complex<double> z = 0;
     int totalIterations = 0;
     while (abs(z) <= 2 and totalIterations < ConfigUtils::getMaxIterations()) {

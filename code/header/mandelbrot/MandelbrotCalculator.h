@@ -12,7 +12,9 @@
 class MandelbrotCalculator {
 public:
     static int mandelbrotIterations(std::complex<double> constant);
-    static std::vector<MandelbrotResult> getMandelbrot(int xMax, int yMax);
+
+    static std::vector<MandelbrotResult>
+    getMandelbrot(int width, int height, double realStart, double realEnd, double imaginaryStart, double imaginaryEnd);
 };
 
 

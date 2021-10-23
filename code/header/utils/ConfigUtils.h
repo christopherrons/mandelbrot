@@ -5,6 +5,9 @@
 #ifndef MANDELBROT_CONFIGUTILS_H
 #define MANDELBROT_CONFIGUTILS_H
 
+#include <SFML/Graphics/Color.hpp>
+#include "MathUtils.h"
+
 class ConfigUtils {
 public:
     static int getGridWidth();
@@ -13,15 +16,17 @@ public:
 
     static int getMaxIterations();
 
-    static int getBlackRBG();
+    static double getRealStart();
 
-    static int getRealStart();
+    static double getRealEnd();
 
-    static int getRealEnd();
+    static double getImaginaryStart();
 
-    static int getImaginaryStart();
+    static double getImaginaryEnd();
 
-    static int getImaginaryEnd();
+    static double getZoomGridValue();
+
+    static sf::Color getColorInterpolated(double iterationRatio);
 };
 
 #endif //MANDELBROT_CONFIGUTILS_H

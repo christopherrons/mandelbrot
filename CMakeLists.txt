@@ -11,8 +11,12 @@ add_executable(mandelbrot
         code/header/gui/WindowHandler.h
         code/src/util/ConfigUtils.cpp
         code/header/utils/ConfigUtils.h
+        code/src/util/MathUtils.cpp
+        code/header/utils/MathUtils.h
         code/src/mandelbrot/MandelbrotCalculator.cpp
-        code/header/mandelbrot/MandelbrotCalculator.h code/src/mandelbrot/MandelbrotResult.cpp code/header/mandelbrot/MandelbrotResult.h)
+        code/header/mandelbrot/MandelbrotCalculator.h
+        code/src/mandelbrot/MandelbrotResult.cpp
+        code/header/mandelbrot/MandelbrotResult.h)
 
 target_link_libraries(mandelbrot
         -lsfml-graphics

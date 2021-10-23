@@ -18,19 +18,24 @@ public:
 
 private:
     sf::Sprite backgroundSprite;
+    std::vector<sf::RectangleShape> pixels;
 
 public:
     sf::RenderWindow window;
 
     void drawBackground();
 
-    sf::Texture backgroundTexture;
-
     void drawMandelbrotPixel(std::vector<MandelbrotResult> mandelbrotResults);
 
-    void addPixel(sf::Vector2f position, unsigned char red, unsigned char green, unsigned char blue);
+    void addPixel(sf::RectangleShape pixel, sf::Vector2f position, sf::Color color);
 
     void displayWindow();
+
+    double getWindowHeight();
+
+    double getWindowWidth();
+
+    void initPixels();
 };
 
 #endif //MANDELBROT_WINDOWHANDLER_H
