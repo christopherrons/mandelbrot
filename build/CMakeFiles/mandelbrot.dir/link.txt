@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/mandelbrot.dir/code/main.cpp.o CMakeFiles/mandelbrot.dir/code/src/gui/WindowHandler.cpp.o CMakeFiles/mandelbrot.dir/code/src/util/ConfigUtils.cpp.o CMakeFiles/mandelbrot.dir/code/src/mandelbrot/MandelbrotCalculator.cpp.o CMakeFiles/mandelbrot.dir/code/src/mandelbrot/MandelbrotResult.cpp.o -o ../bin/mandelbrot  -lsfml-graphics -lsfml-window -lsfml-system 
