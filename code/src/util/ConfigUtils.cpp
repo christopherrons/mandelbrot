@@ -44,16 +44,19 @@ sf::Color ConfigUtils::getColorInterpolated(double iterationRatio) {
         sf::Uint8 green = MathUtils::linearInterpolation(iterationRatio, 0.0, 0.16, 7, 107);
         sf::Uint8 blue = MathUtils::linearInterpolation(iterationRatio, 0.0, 0.16, 100, 203);
         return {red, green, blue, alpha};
+
     } else if (iterationRatio >= 0.16 && iterationRatio < 0.42) {
         sf::Uint8 red = MathUtils::linearInterpolation(iterationRatio, 0.16, 0.42, 66, 237);
         sf::Uint8 green = MathUtils::linearInterpolation(iterationRatio, 0.16, 0.42, 107, 255);
         sf::Uint8 blue = MathUtils::linearInterpolation(iterationRatio, 0.16, 0.42, 203, 255);
         return {red, green, blue, alpha};
+
     } else if (iterationRatio >= 0.42 && iterationRatio < 0.6425) {
         sf::Uint8 red = MathUtils::linearInterpolation(iterationRatio, 0.42, 0.6425, 237, 255);
         sf::Uint8 green = MathUtils::linearInterpolation(iterationRatio, 0.42, 0.6425, 255, 170);
         sf::Uint8 blue = MathUtils::linearInterpolation(iterationRatio, 0.42, 0.6425, 255, 0);
         return {red, green, blue, alpha};
+
     } else if (iterationRatio >= 0.6425 && iterationRatio < 0.8575) {
         sf::Uint8 red = MathUtils::linearInterpolation(iterationRatio, 0.6425, 0.8575, 255, 0);
         sf::Uint8 green = MathUtils::linearInterpolation(iterationRatio, 0.6425, 0.8575, 170, 2);

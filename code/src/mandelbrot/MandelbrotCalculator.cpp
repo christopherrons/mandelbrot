@@ -6,9 +6,9 @@
 #include "../../header/mandelbrot/MandelbrotCalculator.h"
 #include "../../header/utils/ConfigUtils.h"
 
-std::vector<MandelbrotResult>
-MandelbrotCalculator::getMandelbrot(int width, int height, double realStart, double realEnd, double imaginaryStart,
-                                    double imaginaryEnd) {
+std::vector<MandelbrotResult> MandelbrotCalculator::getMandelbrot(int width, int height,
+                                                                  double realStart, double realEnd,
+                                                                  double imaginaryStart, double imaginaryEnd) {
     std::vector<MandelbrotResult> mandelbrotResults;
     MandelbrotResult mandelbrotResult = MandelbrotResult();
     for (int x = 0; x < width; x++) {
