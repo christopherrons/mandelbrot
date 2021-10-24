@@ -27,7 +27,7 @@ public:
 
     void drawMandelbrotPixel(std::vector<MandelbrotResult> mandelbrotResults);
 
-    void addPixel(sf::RectangleShape pixel, sf::Vector2f position, sf::Color color);
+    void drawPixel(sf::RectangleShape pixel, sf::Vector2f position, sf::Color color);
 
     void displayWindow();
 

@@ -4,8 +4,6 @@
 
 #include "../../header/gui/WindowHandler.h"
 #include "../../header/utils/ConfigUtils.h"
-
-#include <iostream>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
@@ -33,15 +31,15 @@ void WindowHandler::initPixels() {
 void WindowHandler::drawMandelbrotPixel(std::vector<MandelbrotResult> mandelbrotResults) {
     this->window.clear();
     for (int i = 0; i < mandelbrotResults.size(); i++) {
-        addPixel(this->pixels[i],
-                 {(float) mandelbrotResults[i].getXCoord(),
-                  (float) mandelbrotResults[i].getYCoord()},
-                 ConfigUtils::getColorInterpolated(
-                         (double) mandelbrotResults[i].getTotalIterations() / ConfigUtils::getMaxIterations()));
+        drawPixel(this->pixels[i],
+                  {(float) mandelbrotResults[i].getXCoord(),
+                   (float) mandelbrotResults[i].getYCoord()},
+                  ConfigUtils::getColorInterpolated(
+                          (double) mandelbrotResults[i].getTotalIterations() / ConfigUtils::getMaxIterations()));
     }
 }
 
-void WindowHandler::addPixel(sf::RectangleShape pixel, sf::Vector2f position, sf::Color color) {
+void WindowHandler::drawPixel(sf::RectangleShape pixel, sf::Vector2f position, sf::Color color) {
     pixel.setFillColor(color);
     pixel.setPosition(position);
     this->window.draw(pixel);

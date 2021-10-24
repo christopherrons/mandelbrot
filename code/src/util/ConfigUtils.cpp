@@ -34,7 +34,7 @@ double ConfigUtils::getImaginaryEnd() {
 }
 
 double ConfigUtils::getZoomGridValue() {
-    return 10.0;
+    return 40.0;
 }
 
 sf::Color ConfigUtils::getColorInterpolated(double iterationRatio) {
