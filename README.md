@@ -1,8 +1,8 @@
 # Mandelbrot
 Draws the Mandelbrot set and allows the user to zoom in for a more detailed view. 
 
-# Installation Linux Ubuntu
-The drawing requires SFML to run. Simple run the setup.sh script:`./setup.sh` once SFML is installed.
+# Requirements
+The drawing requires SFML to run.
 
 # Running the Application
 The application is built using Cmake and can be built and executed using the buildAndExecute.sh script:
