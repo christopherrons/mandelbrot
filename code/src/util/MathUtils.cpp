@@ -6,8 +6,8 @@
 #include "../../header/utils/MathUtils.h"
 
 
-double MathUtils::scaleValue(int value, int maxValue, double scaleMin, double scaleMax) {
-    return scaleMin + (value / (double) maxValue) * (scaleMax - scaleMin);
+double MathUtils::scaleValue(double value, double minValue, double maxValue, double scaleMin, double scaleMax) {
+    return scaleMin + ((value - minValue) / (maxValue - minValue)) * (scaleMax - scaleMin);
 }
 
 double MathUtils::linearInterpolation(double x, double x0, double x1, double y0, double y1) {

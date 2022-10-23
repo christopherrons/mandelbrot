@@ -10,6 +10,7 @@
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
+#include <atomic>
 #include "../mandelbrot/MandelbrotResult.h"
 
 class WindowHandler {
@@ -25,9 +26,9 @@ public:
 
     void drawBackground();
 
-    void drawMandelbrotPixel(std::vector<MandelbrotResult> mandelbrotResults);
+    void drawMandelbrotPixels(double realStart, double realEnd, double imaginaryStart, double imaginaryEnd);
 
-    void drawPixel(sf::RectangleShape pixel, sf::Vector2f position, sf::Color color);
+    void drawPixels();
 
     void displayWindow();
 

@@ -7,14 +7,13 @@
 
 
 #include <complex>
+#include <atomic>
 #include "MandelbrotResult.h"
 
 class MandelbrotCalculator {
 public:
-    static int mandelbrotIterations(std::complex<double> constant);
-
-    static std::vector<MandelbrotResult>
-    getMandelbrot(int width, int height, double realStart, double realEnd, double imaginaryStart, double imaginaryEnd);
+    static int mandelbrotIterations(double x, double width, double realStart, double realEnd, double y, double height,
+                                    double imaginaryStart, double imaginaryEnd);
 };
 
 

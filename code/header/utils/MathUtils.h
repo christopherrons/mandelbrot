@@ -9,7 +9,7 @@
 
 class MathUtils {
 public:
-    static double scaleValue(int maxValue, int value, double scaleMin, double scaleMax);
+    static double scaleValue(double value, double minValue, double maxValue, double scaleMin, double scaleMax);
 
     static double linearInterpolation(double x, double x0, double x1, double y0, double y1);
 };

@@ -4,10 +4,11 @@
 
 #include "../../header/gui/WindowHandler.h"
 #include "../../header/utils/ConfigUtils.h"
+#include "../../header/mandelbrot/MandelbrotCalculator.h"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
-
+#include <execution>
 
 WindowHandler::WindowHandler()
         : window(sf::VideoMode(ConfigUtils::getGridWidth(), ConfigUtils::getGridHeight()), "Mandelbrot Set",
@@ -28,21 +29,35 @@ void WindowHandler::initPixels() {
     }
 }
 
-void WindowHandler::drawMandelbrotPixel(std::vector<MandelbrotResult> mandelbrotResults) {
-    this->window.clear();
-    for (int i = 0; i < mandelbrotResults.size(); i++) {
-        drawPixel(this->pixels[i],
-                  {(float) mandelbrotResults[i].getXCoord(),
-                   (float) mandelbrotResults[i].getYCoord()},
-                  ConfigUtils::getColorInterpolated(
-                          (double) mandelbrotResults[i].getTotalIterations() / ConfigUtils::getMaxIterations()));
-    }
+
+void WindowHandler::drawMandelbrotPixels(double realStart, double realEnd, double imaginaryStart, double imaginaryEnd) {
+    std::for_each(
+            std::execution::par,
+            this->pixels.begin(),
+            this->pixels.end(),
+            [this, realStart, realEnd, imaginaryStart, imaginaryEnd](auto &&pixel) {
+                double nrOfIterations = MandelbrotCalculator::mandelbrotIterations(
+                        pixel.getPosition().x,
+                        this->getWindowWidth(),
+                        realStart,
+                        realEnd,
+                        pixel.getPosition().y,
+                        this->getWindowHeight(),
+                        imaginaryStart,
+                        imaginaryEnd
+                );
+                sf::Color color = ConfigUtils::getColorInterpolated(nrOfIterations / ConfigUtils::getMaxIterations());
+                pixel.setFillColor(color);
+                this->window.draw(pixel);
+            });
+
+    //  this->drawPixels();
 }
 
-void WindowHandler::drawPixel(sf::RectangleShape pixel, sf::Vector2f position, sf::Color color) {
-    pixel.setFillColor(color);
-    pixel.setPosition(position);
-    this->window.draw(pixel);
+void WindowHandler::drawPixels() {
+    for (int i = 0; i < this->pixels.size(); i++) {
+        this->window.draw(pixels[i]);
+    }
 }
 
 void WindowHandler::drawBackground() {

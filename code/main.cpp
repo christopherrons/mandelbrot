@@ -40,23 +40,23 @@ int main() {
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
                 CurrentMousePosition = sf::Mouse::getPosition(windowHandler.window);
 
-                int xStart = CurrentMousePosition.x - ConfigUtils::getZoomGridValue();
+                double xStart = CurrentMousePosition.x - ConfigUtils::getZoomGridValue();
                 xStart = xStart < 0 ? 0 : xStart;
 
-                int xEnd = CurrentMousePosition.x + ConfigUtils::getZoomGridValue();
+                double xEnd = CurrentMousePosition.x + ConfigUtils::getZoomGridValue();
                 xEnd = xEnd > windowHandler.getWindowWidth() ? windowHandler.getWindowWidth() : xEnd;
 
-                int yStart = CurrentMousePosition.y - ConfigUtils::getZoomGridValue();
+                double yStart = CurrentMousePosition.y - ConfigUtils::getZoomGridValue();
                 yStart = yStart < 0 ? 0 : yStart;
 
-                int yEnd = CurrentMousePosition.y + ConfigUtils::getZoomGridValue();
+                double yEnd = CurrentMousePosition.y + ConfigUtils::getZoomGridValue();
                 yEnd = yEnd > windowHandler.getWindowHeight() ? windowHandler.getWindowHeight() : yEnd;
 
-                realStart = MathUtils::scaleValue(xStart, windowHandler.getWindowWidth(), realStart, realEnd);
-                realEnd = MathUtils::scaleValue(xEnd, windowHandler.getWindowWidth(), realStart, realEnd);
-                imaginaryStart = MathUtils::scaleValue(yStart, windowHandler.getWindowHeight(), imaginaryStart,
+                realStart = MathUtils::scaleValue(xStart, 0, windowHandler.getWindowWidth(), realStart, realEnd);
+                realEnd = MathUtils::scaleValue(xEnd, 0, windowHandler.getWindowWidth(), realStart, realEnd);
+                imaginaryStart = MathUtils::scaleValue(yStart, 0, windowHandler.getWindowHeight(), imaginaryStart,
                                                        imaginaryEnd);
-                imaginaryEnd = MathUtils::scaleValue(yEnd, windowHandler.getWindowHeight(), imaginaryStart,
+                imaginaryEnd = MathUtils::scaleValue(yEnd, 0, windowHandler.getWindowHeight(), imaginaryStart,
                                                      imaginaryEnd);
 
                 std::cout << "" << std::endl;
@@ -79,26 +79,15 @@ void runMandelbrot(WindowHandler &windowHandler, double realStart, double realEn
     sf::Clock clock;
     sf::Time timeSinceLastUpdate;
 
-    std::cout << "STARTING: Calculating Mandelbrot" << std::endl;
-    auto start = std::chrono::high_resolution_clock::now();
-    std::vector<MandelbrotResult> mandelbrotResults = MandelbrotCalculator::getMandelbrot(
-            windowHandler.getWindowWidth(),
-            windowHandler.getWindowHeight(),
-            realStart,
-            realEnd,
-            imaginaryStart,
-            imaginaryEnd);
-    std::cout << "DONE: Calculating Mandelbrot" << std::endl;
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
-    std::cout << "Calculation Time: " << duration.count() << std::endl;
-
     std::cout << "STARTING: Drawing Mandelbrot" << std::endl;
-    start = std::chrono::high_resolution_clock::now();
-    windowHandler.drawMandelbrotPixel(mandelbrotResults);
+    auto start = std::chrono::high_resolution_clock::now();
+    windowHandler.drawMandelbrotPixels(realStart,
+                                       realEnd,
+                                       imaginaryStart,
+                                       imaginaryEnd);
     windowHandler.displayWindow();
     std::cout << "DONE: Drawing Mandelbrot" << std::endl;
-    stop = std::chrono::high_resolution_clock::now();
-    duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
     std::cout << "Draw Time: " << duration.count() << std::endl;
 }

@@ -6,15 +6,15 @@
 #include "../../header/utils/ConfigUtils.h"
 
 int ConfigUtils::getGridWidth() {
-    return 1920;
+    return 640;
 }
 
 int ConfigUtils::getGridHeight() {
-    return 1080;
+    return 480;
 }
 
 int ConfigUtils::getMaxIterations() {
-    return 200;
+    return 500;
 }
 
 double ConfigUtils::getRealStart() {
@@ -34,7 +34,7 @@ double ConfigUtils::getImaginaryEnd() {
 }
 
 double ConfigUtils::getZoomGridValue() {
-    return 40.0;
+    return 20.0;
 }
 
 sf::Color ConfigUtils::getColorInterpolated(double iterationRatio) {
